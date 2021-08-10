@@ -3,7 +3,7 @@
     <h1 class="text-yellow-300 text-center text-2xl uppercase pb-4">
       Task Time Tracker
     </h1>
-    <task-form></task-form>
+    <task-form @save-data="saveData"></task-form>
   </section>
 </template>
 
@@ -13,6 +13,11 @@ import TaskForm from './components/TaskForm.vue';
 export default {
   components: {
     TaskForm,
+  },
+  methods: {
+    saveData(data) {
+      this.$store.dispatch('addTask', data);
+    },
   },
 };
 </script>

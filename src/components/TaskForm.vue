@@ -59,6 +59,7 @@ export default {
       to: null,
     };
   },
+  emits: ['save-data'],
   methods: {
     submitForm() {
       const formData = {
@@ -66,9 +67,10 @@ export default {
         type: this.type,
         date: this.date,
         from: this.from,
-        to: this.to
-      }
-      console.log(formData);      
+        to: this.to,
+      };
+
+      this.$emit('save-data', formData);
     },
   },
 };

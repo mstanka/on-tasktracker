@@ -7,7 +7,7 @@ import getters from './getters';
 const store = createStore({
   state() {
     return {
-      //...
+      tasks: [],
     };
   },
   mutations,
