@@ -1,5 +1,6 @@
 <template>
-  <ul v-if="hasTasks">
+  <p v-if="isLoading" class="text-center">Loading tasks....</p>
+  <ul v-else-if="hasTasks && !isLoading">
     <task-item
       v-for="task in tasks"
       :key="task.id"
@@ -12,10 +13,7 @@
     >
     </task-item>
   </ul>
-  <div class="text-center">
-    <h2 class="text-center">No tasks has been recorded yet!</h2>
-    <p>Add a task</p>
-  </div>
+  <h2 v-else class="text-center">No tasks has been recorded yet!</h2>
 </template>
 
 <script>
@@ -25,6 +23,11 @@ export default {
   components: {
     TaskItem,
   },
+  data() {
+    return {
+      isLoading: false,
+    };
+  },
   computed: {
     tasks() {
       return this.$store.getters.getTasks;
@@ -32,6 +35,20 @@ export default {
     hasTasks() {
       console.log(this.$store.getters.hasTasks);
       return this.$store.getters.hasTasks;
+    },
+    created() {
+      this.loadTasks();
+    },
+    methods: {
+      async loadTasks() {
+        this.isLoading = true;
+        try {
+          await this.$store.dispatch('loadTasks');
+        } catch (error) {
+          console.log(error);
+        }
+        this.isLoading = false;
+      },
     },
   },
 };

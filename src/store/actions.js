@@ -29,4 +29,33 @@ export default {
 
     context.commit('addTask', taskData);
   },
+  async loadTasks(context) {
+    const response =
+      await fetch(`https://on-tasktracker-default-rtdb.europe-west1.firebasedatabase.app/tasks.json`);
+
+    const responseData = await response.json();
+    console.log(responseData);
+
+    if (!response.ok) {
+      const error = new Error(responseData.message || 'Failed to fetch');
+      throw error;
+    }
+
+    const tasks = [];
+
+    for (const key in responseData) {
+      const task = {
+        id: key,
+        name: responseData[key].name,
+        type: responseData[key].type,
+        date: responseData[key].date,
+        from: responseData[key].from,
+        to: responseData[key].to,
+      };
+      tasks.push(task);
+    }
+    console.log(tasks)
+
+    context.commit('setTasks', tasks);
+  },
 };
