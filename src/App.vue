@@ -5,14 +5,19 @@
     </h1>
     <task-form @save-data="saveData"></task-form>
   </section>
+  <section>
+    <tasks-list></tasks-list>
+  </section>
 </template>
 
 <script>
 import TaskForm from './components/TaskForm.vue';
+import TasksList from './components/TasksList.vue';
 
 export default {
   components: {
     TaskForm,
+    TasksList,
   },
   methods: {
     saveData(data) {
