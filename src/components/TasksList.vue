@@ -36,19 +36,19 @@ export default {
       console.log(this.$store.getters.hasTasks);
       return this.$store.getters.hasTasks;
     },
-    created() {
-      this.loadTasks();
-    },
-    methods: {
-      async loadTasks() {
-        this.isLoading = true;
-        try {
-          await this.$store.dispatch('loadTasks');
-        } catch (error) {
-          console.log(error);
-        }
-        this.isLoading = false;
-      },
+  },
+  created() {
+    this.loadTasks();
+  },
+  methods: {
+    async loadTasks() {
+      this.isLoading = true;
+      try {
+        await this.$store.dispatch('loadTasks');
+      } catch (error) {
+        console.log(error);
+      }
+      this.isLoading = false;
     },
   },
 };

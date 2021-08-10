@@ -15,12 +15,12 @@ export default {
       `https://on-tasktracker-default-rtdb.europe-west1.firebasedatabase.app/tasks/${taskData.id}.json`,
       {
         method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(taskData),
       },
     );
 
     const responseData = await response.json();
-    console.log(responseData);
 
     if (!response.ok) {
       const error = new Error(responseData.message || 'Failed to fetch');
@@ -30,11 +30,11 @@ export default {
     context.commit('addTask', taskData);
   },
   async loadTasks(context) {
-    const response =
-      await fetch(`https://on-tasktracker-default-rtdb.europe-west1.firebasedatabase.app/tasks.json`);
+    const response = await fetch(
+      `https://on-tasktracker-default-rtdb.europe-west1.firebasedatabase.app/tasks.json`,
+    );
 
     const responseData = await response.json();
-    console.log(responseData);
 
     if (!response.ok) {
       const error = new Error(responseData.message || 'Failed to fetch');
@@ -54,7 +54,6 @@ export default {
       };
       tasks.push(task);
     }
-    console.log(tasks)
 
     context.commit('setTasks', tasks);
   },
