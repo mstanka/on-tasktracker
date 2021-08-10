@@ -1,6 +1,19 @@
 <template>
   <p v-if="isLoading" class="text-center">Loading tasks....</p>
-  <ul v-else-if="hasTasks && !isLoading">
+  <table
+    v-else-if="hasTasks && !isLoading"
+    class="border-separate text-sm table-auto"
+  >
+    <caption class="text-red-900 text-center font-bold uppercase mb-3">
+      Recorded Tasks
+    </caption>
+    <tr class="my-2 bg-yellow-300 text-red-900 border border-red-900">
+      <th class="py-2 px-1">Name</th>
+      <th class="py-2 px-1">Type</th>
+      <th class="py-2 px-1">Date</th>
+      <th class="py-2 px-1">From</th>
+      <th class="py-2 px-1">To</th>
+    </tr>
     <task-item
       v-for="task in tasks"
       :key="task.id"
@@ -12,7 +25,7 @@
       :to="task.to"
     >
     </task-item>
-  </ul>
+  </table>
   <h2 v-else class="text-center">No tasks has been recorded yet!</h2>
 </template>
 
