@@ -71,7 +71,6 @@ export default {
     },
     sortByName() {
       this.$store.dispatch('sortByName');
-      console.log('clicked');
     },
     sortByType() {
       this.$store.dispatch('sortByType');
