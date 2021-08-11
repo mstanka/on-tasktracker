@@ -74,4 +74,13 @@ export default {
 
     context.commit('removeTask', id);
   },
+  sortByName(context) {
+    context.commit('sortByName');
+  },
+  sortByType(context) {
+    context.commit('sortByType');
+  },
+  sortByDate(context) {
+    context.commit('sortByDate');
+  },
 };

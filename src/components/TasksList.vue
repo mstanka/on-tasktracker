@@ -8,9 +8,15 @@
       Recorded Tasks
     </caption>
     <tr class="my-2 bg-yellow-300 text-red-900 border border-red-900">
-      <th class="py-2 px-1">Name</th>
-      <th class="py-2 px-1">Type</th>
-      <th class="py-2 px-1">Date</th>
+      <th class="py-2 px-1">
+        Name <button @click="sortByName">&#8595;</button>
+      </th>
+      <th class="py-2 px-1">
+        Type <button @click="sortByType">&#8595;</button>
+      </th>
+      <th class="py-2 px-1">
+        Date <button @click="sortByDate">&#8595;</button>
+      </th>
       <th class="py-2 px-1">From</th>
       <th class="py-2 px-1">To</th>
       <th class="py-2 px-1">Remove</th>
@@ -62,6 +68,16 @@ export default {
         console.log(error);
       }
       this.isLoading = false;
+    },
+    sortByName() {
+      this.$store.dispatch('sortByName');
+      console.log('clicked');
+    },
+    sortByType() {
+      this.$store.dispatch('sortByType');
+    },
+    sortByDate() {
+      this.$store.dispatch('sortByDate');
     },
   },
 };
