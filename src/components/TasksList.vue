@@ -2,7 +2,7 @@
   <p v-if="isLoading" class="text-center">Loading tasks....</p>
   <table
     v-else-if="hasTasks && !isLoading"
-    class="border-separate text-sm table-auto"
+    class="border-separate text-sm table-auto mx-auto overflow-x-scroll"
   >
     <caption class="text-red-900 text-center font-bold uppercase mb-3">
       Recorded Tasks
@@ -13,6 +13,7 @@
       <th class="py-2 px-1">Date</th>
       <th class="py-2 px-1">From</th>
       <th class="py-2 px-1">To</th>
+      <th class="py-2 px-1">Remove</th>
     </tr>
     <task-item
       v-for="task in tasks"
@@ -46,7 +47,6 @@ export default {
       return this.$store.getters.getTasks;
     },
     hasTasks() {
-      console.log(this.$store.getters.hasTasks);
       return this.$store.getters.hasTasks;
     },
   },

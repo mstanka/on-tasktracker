@@ -57,4 +57,21 @@ export default {
 
     context.commit('setTasks', tasks);
   },
+  async removeTask(context, id) {
+    const response = await fetch(
+      `https://on-tasktracker-default-rtdb.europe-west1.firebasedatabase.app/tasks/${id}.json`,
+      {
+        method: 'DELETE',
+      },
+    );
+
+    const responseData = await response.json();
+
+    if (!response.ok) {
+      const error = new Error(responseData.message || 'Failed to delete');
+      throw error;
+    }
+
+    context.commit('removeTask', id);
+  },
 };

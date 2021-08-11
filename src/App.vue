@@ -5,7 +5,7 @@
     </h1>
     <task-form @save-data="saveData"></task-form>
   </section>
-  <section class="mx-auto py-10 w-96">    
+  <section class="mx-auto py-10 w-96 max-w-screen-lg md:w-full">    
     <tasks-list></tasks-list>
   </section>
 </template>

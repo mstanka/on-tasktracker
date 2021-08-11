@@ -71,6 +71,12 @@ export default {
       };
 
       this.$emit('save-data', formData);
+
+      this.name = '';
+      this.type = '';
+      this.date = null;
+      this.from = null;
+      this.to = null;
     },
   },
 };
